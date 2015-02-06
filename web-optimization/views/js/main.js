@@ -1,18 +1,9 @@
 /*
-Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
-jank-free at 60 frames per second.
+Udacity Nanodegree Fourth Project: Web Optimization
 
-There are two major issues in this code that lead to sub-60fps performance. Can
-you spot and fix both?
+Code optimization: Irene Alvarado
 
-Built into the code, you'll find a few instances of the User Timing API
-(window.performance), which will be console.log()ing frame rate data into the
-browser console. To learn more about User Timing API, check out:
-http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
-Creator:
-Cameron Pittman, Udacity Course Developer
-cameron *at* udacity *dot* com
+Creator: Cameron Pittman, Udacity Course Developer
 */
 
 // As you may have realized, this website randomly generates pizzas.
@@ -451,26 +442,23 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    var length = document.querySelectorAll(".randomPizzaContainer").length ;
     var matches = document.querySelectorAll(".randomPizzaContainer") ;
-    var dx = determineDx(matches[0], size);
+    var length = matches.length ; 
+    var dx = determineDx(matches[0], size); //Irene: moved these variables outside the for loop. They're effectively the same for each Pizza div
     var newwidth = (matches[0].offsetWidth + dx) + 'px';
 
     for (var i = 0; i < length; i++) {
-      //var dx = determineDx(matches[i], size);
-      //var newwidth = (matches[i].offsetWidth + dx) + 'px';
       matches[i].style.width = newwidth;
     }
   }
 
-  changePizzaSizes(size); //CHANGE!!!  hint: what values can be calculated inside the loop and what values can be calculated outside the loop?
+  changePizzaSizes(size); 
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-  // ADD THE FOLLOWING LINE TO MAKE IT WORK RIGHT:
   window.performance.clearMeasures('measure_pizza_resize');
 };
 
@@ -487,7 +475,6 @@ window.performance.mark("mark_end_generating");
 window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
 console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
-
 
 
 // Iterator for number of times the pizzas in the background have scrolled.
@@ -507,20 +494,37 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-var items ;
+var lastScroll = 0 ; //Irene: keeps track of the distance from current location to top of page
+var isTicking = false ; // Irene: boolean to indicate whether we are sliding pizzas or not
+var items ; 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  //var items = document.querySelectorAll('.mover');
-  var scroll = document.body.scrollTop ; 
-  //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //Irene: Resets to indicate animation frame will not be ongoing after function returns
+  isTicking = false ;
 
+  var phase1 = (Math.sin(lastScroll)) * 100 ;
+  var phase2 = (Math.sin(lastScroll + 1)) * 100 ;
+  var phase3 = (Math.sin(lastScroll + 2)) * 100 ;
+  var phase4 = (Math.sin(lastScroll + 3)) * 100 ;
+  var phase5 = (Math.sin(lastScroll + 4)) * 100 ;
+  var phases = [phase1, phase2, phase3, phase4, phase5] ;
+  
   var itemLen = items.length ;
   for (var i = 0; i < itemLen; i++) {
-    var phase = Math.sin((scroll/ 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var item = items[i] ;
+
+    // Irene: compute a new X position. Y stayes the same
+    var translateX = item.translateX + phases[i%5];
+    var translateY = item.translateY;
+
+    // Irene: update position
+    item.style.webkitTransform = 'translate3d(' + translateX + 'px, ' + translateY + 'px, 0px)';
+    item.style.mozTransform = 'translate3d(' + translateX + 'px, ' + translateY + 'px, 0px)';
+    item.style.transform = 'translate3d(' + translateX + 'px, ' + translateY + 'px, 0px)';
+
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -533,24 +537,48 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+//Irene: our event listener will actually keep track of whether the moving pizzas are updating. If the animatino frame is ongoing no need to re-request the animation.
+window.addEventListener('scroll', function () {
+  lastScroll = document.body.scrollTop / 1250;
+
+  // Irene: If an animation frame is not ongoing, request an animation frame.
+  if (!isTicking) {
+    requestAnimationFrame(updatePositions);
+  }
+  // Irene: Animation frame is ongoing if true
+  isTicking = true;
+});
+
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var query = document.querySelector("#movingPizzas1") ;
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 40; i++) { // Irene: reduce the number of Pizza elements need to fill a screen
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = image ;
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+
+    //Irene: the original x position of a pizza 
+    elem.style.left = 0 ;
+
+    //Irene: the x position of a sliding pizza
+    elem.translateX = (i % cols) * s ;
+
+    //Irene: the y position of a sliding pizza
+    elem.translateY = (Math.floor(i / cols) * s);
+
+    //Irene: transform allows us to move pizzas and avoid the layout of the entire page
+    // Irene: translate3d() creates a composition layer for each pizza so that the entire page is not repainted when there's a change in a pizza
+    elem.style.webkitTransform = 'translate3d(0px, ' + elem.translateY + 'px, 0px)';
+    elem.style.mozTransform = 'translate3d(0px, ' + elem.translateY + 'px, 0px)';
+    elem.style.transform = 'translate3d(0px', + elem.translateY + 'px, 0px)';
+
     query.appendChild(elem);
   }
-  items = document.querySelectorAll('.mover');
+  items = document.querySelectorAll('.mover'); // Irene: took out the selection of all .mover elements because it can be queried before the updatePositions() function
   updatePositions();
 });
