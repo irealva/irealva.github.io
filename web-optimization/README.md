@@ -12,6 +12,8 @@ Steps:
 
 4. Added my fonts as @font-faces int the style.css so browser doesn't have to download an extra critical resource (Desktop: 92, Mobile: 85)
 
+5. I minimized my stype.css file into stype-min.css (Desktop: )
+
 ####Part 2: Optimize Frames per Second in pizza.html
 
 Steps taken to speed up the frame rate:
