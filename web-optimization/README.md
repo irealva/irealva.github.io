@@ -32,4 +32,8 @@ Steps taken to speed up the frame rate:
 
 7. To display the scrolling pizzas: I used animation to reduce fps. 
 
+####Part 2: Optimize Frames per Second in pizza.html
+
+Additional steps: I combined and minified all css and javascript files using Grunt. I kept only a production version. 
+
 
