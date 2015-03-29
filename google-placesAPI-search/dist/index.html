@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Google Places Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Styles -->
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <div class="navbar navbar-custom navbar-fixed-top">
+        <div class="navbar-header">
+            <p class="navbar-text hidden-xs">Google Places Search</p>
+            <form class="navbar-form" data-bind="submit: searchLocation">
+                <div class="form-group" style="display:inline;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" data-bind="textInput: userSearch, attr: {placeholder: placeholder}">
+                        <span class="input-group-addon" data-bind="click: searchLocation"><span class="glyphicon glyphicon-search"></span> </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-6" id="map-canvas"></div>
+    <div class="container-fluid" id="main">
+        <div class="row">
+            <div class="col-xs-12 col-md-6" id="left">
+                <h3>Search results:</h3>
+                <br>
+                <!-- item list -->
+                <div data-bind="foreach: placesResultsList">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="hidden-xs hidden-sm" href="" data-bind="text: html.header, click: $parent.clickedHeader"></a>
+                            <p class="hidden-md hidden-lg" data-bind="text: html.header"></p>
+                        </div>
+                    </div>
+                    <div data-bind="html: html.description"></div>
+                    <hr>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-6">
+                <!--map-canvas will go here-->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
