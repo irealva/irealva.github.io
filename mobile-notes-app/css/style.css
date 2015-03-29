@@ -1,0 +1,4 @@
+li.completed a {
+	color: grey !important;
+	text-decoration: line-through !important;
+}

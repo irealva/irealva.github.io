@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View</title>
+    <link rel="stylesheet"  href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/local-storage.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+
+    <!-- View -->
+    <div data-role="page" id="view">
+        <div data-role="header" data-add-back-btn="true" data-position="fixed">
+            <h1>View</h1>
+            <!--<a href="add.html" data-icon="plus" data-iconpos="notext" class="ui-btn-right" data-transition="slide">New</a>-->
+        </div>
+        <div data-role="content">
+            <form id="edit">
+                <input type="hidden" id="id" value="" name="id"/>
+                <input type="text" id="title" value="" data-id="" class="target" name="title"/>
+                <textarea id="description" data-id="" class="target" name="description"></textarea>
+            </form>
+            <a href="" data-role="button" class="delete">Delete</a>
+        </div>
+    </div>
+    <!-- /View -->
+</body>
+</html>
