@@ -36,6 +36,8 @@ $(document).ready(function () {
 
     // Add a new hidden input element with name="assignmentId" that
     // with assignmentId as its value.
+    var hitID = gup("hitID") ;
+    console.log(hitID) ;
     var aid_input = $("<input type='hidden' name='assignmentId' value='" + aid + "'>").appendTo($(form_selector));
 
     console.log("inside function ready setting turk submission options") ;
