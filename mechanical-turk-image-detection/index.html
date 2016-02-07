@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 3, from LayoutIt!</title>
+    <title>AWS Image Recognition</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
@@ -23,12 +23,30 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="btn-group">
+				<button class="btn btn-default" type="button" id="draw">
+					Draw
+				</button> 
+				<button class="btn btn-default" type="button" id="erase">
+					Erase
+				</button> 
+				</button>
+			</div>
+
+		<button class="btn btn-default" type="button" onclick="eraseAll()">
+			Clear All
+		</button> 
+
 		<div class="col-md-8">
-			<img alt="Bootstrap Image Preview" src="images/image1.jpg" class="img-rounded">
+			
+
+			<canvas width="625" height="330" style='background:url(images/image1.jpg)' id="canvas1" onclick="draw(event)">
+				<!--<img alt="Bootstrap Image Preview" src="images/image1.jpg" class="img-rounded">-->
+			</canvas>	
 		</div>
 		<div class="col-md-4">
 			<h2>
-				Counted so far:
+				Counted so far: <span id="counted"></span>
 			</h2>
 			
 			<form id="mturk_form" name='mturk_form' method="post">
