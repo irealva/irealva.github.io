@@ -11,6 +11,7 @@
 
 // selector used by jquery to identify your form
 var form_selector = "#mturk_form";
+console.log("found the turk form") ;
 
 // function for getting URL parameters
 function gup(name) {
@@ -37,6 +38,7 @@ $(document).ready(function () {
     // with assignmentId as its value.
     var aid_input = $("<input type='hidden' name='assignmentId' value='" + aid + "'>").appendTo($(form_selector));
 
+    console.log("inside function ready setting turk submission options") ;
     // Make sure the submit form's method is POST
     $(form_selector).attr('method', 'POST');
 
