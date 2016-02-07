@@ -1,1 +1,95 @@
-<p>test</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 3, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<p>Description of content</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<img alt="Bootstrap Image Preview" src="images/image1.jpg" class="img-rounded">
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Counted so far:
+			</h2>
+			
+			<form id="mturk_form" role="form" target="_self" onsubmit="">
+				<div class="form-group">
+					 
+					<label for="people_sure">
+						Number of people you are SURE about:
+					</label>
+					<input type="people_sure" class="form-control" id="people_sure">
+				</div>
+				<div class="form-group">
+					 
+					<label for="people_unsure">
+						Number of people you are UNSURE about (0 if you are sure of everyone):
+					</label>
+					<input type="people_unsure" class="form-control" id="people_unsure">
+				</div>
+				<button type="submit" class="btn btn-default">
+					Submit
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/mturk.js"></script>
+
+    <!--
+    <script type="text/javascript">
+    
+    function postContactToGoogle(){
+        var sure = $('#people_sure').val();
+        var unsure = $('#people_unsure').val();
+        if ((sure !== "") && (unsure !== "")) {
+            $.ajax({
+                url: "https://docs.google.com/spreadsheets/d/1TG_dFrdltolVNvjc4ioVEWrYsOlz2-WJ7bXAqbJIN7w/edit?usp=sharing",
+                data: {"entry.1" : sure, "entry.2" : unsure },
+                type: "POST",
+                dataType: "xml",
+                statusCode: {
+                    0: function (){
+ 
+                        $('#sure').val("");
+                        $('#unsure').val("");
+                        //Success message
+                    },
+                    200: function (){
+                        $('#sure').val("");
+                        $('#unsure').val("");
+                        //Success Message
+                    }
+                }
+            });
+        }
+        else {
+            //Error message
+        }
+    }
+</script>-->
+  </body>
+</html>
