@@ -36,7 +36,8 @@ $(document).ready(function () {
 
     // Add a new hidden input element with name="assignmentId" that
     // with assignmentId as its value.
-    var hitID = gup("hitID") ;
+    var hitID = gup("hitId") ;
+    console.log("the hit ID") ;
     console.log(hitID) ;
     var aid_input = $("<input type='hidden' name='assignmentId' value='" + aid + "'>").appendTo($(form_selector));
 
