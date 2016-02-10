@@ -29,9 +29,9 @@ $(document).ready(function () {
   if((aid = gup("assignmentId"))!="" && $(form_selector).length>0) {
 
     // If the HIT hasn't been accepted yet, disabled the form fields.
-    if(aid == "ASSIGNMENT_ID_NOT_AVAILABLE") {
+    /*if(aid == "ASSIGNMENT_ID_NOT_AVAILABLE") {
 	    $('input,textarea,select').attr("DISABLED", "disabled");
-    }
+    }*/
 
     // Add a new hidden input element with name="assignmentId" that
     // with assignmentId as its value.
