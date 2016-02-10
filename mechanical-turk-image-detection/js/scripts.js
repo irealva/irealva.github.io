@@ -49,12 +49,12 @@ contextArray.push(context6);
 //context.globalCompositeOperation = "destination-over";
 
 var count = [];
-for (var k = 0; k < 6; k++) {
+for (var k = 0; k < 7; k++) {
     count.push(0);
 }
 
 var boxes = [];
-for (var k = 0; k < 6; k++) {
+for (var k = 0; k < 7; k++) {
     boxes.push([]);
 }
 
