@@ -27,7 +27,7 @@ var context4 = canvas4.getContext("2d");
 var canvas5 = document.getElementById("canvas5");
 var context5 = canvas5.getContext("2d");
 var canvas6 = document.getElementById("canvas6");
-var context6 = canvas5.getContext("2d");
+var context6 = canvas6.getContext("2d");
 
 canvasArray.push(canvas0);
 canvasArray.push(canvas1);
