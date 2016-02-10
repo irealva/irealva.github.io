@@ -1,148 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>AWS Image Recognition</title>
-
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+</head>
 
-  </head>
-  <body>
-
+<body>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<p>Description of content</p>
+			<h3>
+				Person-counting Image Task
+			</h3>
+			<p>
+				Your task is simple: to identify how many real people are in a picture. Count a person if you can see their head.<br><br>Cases where only partial body parts are present are a little harder. Only count someone if they have a head. On the other hand, if you are unsure whether a figure in a picture is a person, count it as a partial/unsure person. 
+				<br><br>
+				<strong>What to COUNT:</strong><br>
+				• Count a person if you can see their heads<br>
+				• The back of a person DOES COUNT as a person (there is a head)<br>
+				• Children and babies DO COUNT as people<br>
+				<br>
+				<strong>What to AVOID counting:</strong><br>
+				• Animals DO NOT count as people<br>
+				• Animations DO NOT count as people<br>
+				• Reflections DO NOT count as people<br>
+			</p>
+			<h3>
+				How you will get paid
+			</h3>
+			<p>
+				You will be asked to count people in 6 images. The same images will be given to other turkers. If any of the images have more than 50 people in them, we will grant you a $0.80 bonus. 
+				<br><br><br>
+				Thanks for you help! 
+			</p>
+			<br><br><br>
+			<h3>
+				Example 1
+			</h3><img alt="gif1" src="images/explanationgif1.gif" />
+			<p>
+				You can choose to use the marking draw and erase tool or not, it's up to you. Marking the image has no effect on the submission so it is NOT REQUIRED. This is just meant to help you remember how many people are in the picture.
+			</p>
+			<br><br>
+			<h3>
+				Example 2
+			</h3>
+			<img alt="gif2" src="images/explanationgif2.gif" />
+			<p>
+				Notice that in this case we did not count the dog as a person. 
+			</p>
 		</div>
 	</div>
-
-	<form id="mturk_form" name='mturk_form' method="post">
-
-	<div class="row">
-		<div class="btn-group">
-				<button class="btn btn-default" type="button" id="draw0">
-					Draw
-				</button> 
-				<button class="btn btn-default" type="button" id="erase">
-					Erase
-				</button> 
-			</div>
-		<button class="btn btn-default" type="button" onclick="eraseAll(0)">
-			Clear All
-		</button> 
-		<div class="col-md-8">
-			<canvas width="625" height="330" style='background:url(images/image1.jpg)' id="canvas0" onclick="draw(event, 0)">
-				<!--<img alt="Bootstrap Image Preview" src="images/image1.jpg" class="img-rounded">-->
-			</canvas>	
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Counted so far: <span id="counted0"></span>
-			</h2>
-				<div class="form-group">
-					<label for="people_sure">
-						Number of people you are SURE about:
-					</label>
-					<input type="text" class="form-control"  name="people_sure0">
-				</div>
-				<div class="form-group">
-					<label for="people_unsure">
-						Number of people you are UNSURE about<br>(0 if you are sure of everyone):
-					</label>
-					<input type="text" class="form-control"  name="people_unsure0">
-				</div>
-		</div>
-	</div>
-
-		<div class="row">
-		<div class="btn-group">
-				<button class="btn btn-default" type="button" id="draw1">
-					Draw
-				</button> 
-				<button class="btn btn-default" type="button" id="erase">
-					Erase
-				</button> 
-			</div>
-		<button class="btn btn-default" type="button" onclick="eraseAll(1)">
-			Clear All
-		</button> 
-		<div class="col-md-8">
-			<canvas width="625" height="330" style='background:url(images/image2.jpg)' id="canvas1" onclick="draw(event, 1)">
-				<!--<img alt="Bootstrap Image Preview" src="images/image1.jpg" class="img-rounded">-->
-			</canvas>	
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Counted so far: <span id="counted1"></span>
-			</h2>
-				<div class="form-group">
-					<label for="people_sure">
-						Number of people you are SURE about:
-					</label>
-					<input type="text" class="form-control"  name="people_sure1">
-				</div>
-				<div class="form-group">
-					<label for="people_unsure">
-						Number of people you are UNSURE about<br>(0 if you are sure of everyone):
-					</label>
-					<input type="text" class="form-control"  name="people_unsure1">
-				</div>
-		</div>
-	</div>
-
-
-
-	<button type="submit" class="btn btn-default">
-		Submit
-	</button>
-	</form>
-	
-
+	<br><br><br>
+	<div class="row buttonrow">
+        <a class="btn btn-default btn-success btn-lg" href="task.html">
+          Next
+        </a>
+    </div>
 </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/mturk.js"></script>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
-    <!--
-    <script type="text/javascript">
-    
-    function postContactToGoogle(){
-        var sure = $('#people_sure').val();
-        var unsure = $('#people_unsure').val();
-        if ((sure !== "") && (unsure !== "")) {
-            $.ajax({
-                url: "https://docs.google.com/spreadsheets/d/1TG_dFrdltolVNvjc4ioVEWrYsOlz2-WJ7bXAqbJIN7w/edit?usp=sharing",
-                data: {"entry.1" : sure, "entry.2" : unsure },
-                type: "POST",
-                dataType: "xml",
-                statusCode: {
-                    0: function (){
- 
-                        $('#sure').val("");
-                        $('#unsure').val("");
-                        //Success message
-                    },
-                    200: function (){
-                        $('#sure').val("");
-                        $('#unsure').val("");
-                        //Success Message
-                    }
-                }
-            });
-        }
-        else {
-            //Error message
-        }
-    }
-</script>-->
-  </body>
 </html>
