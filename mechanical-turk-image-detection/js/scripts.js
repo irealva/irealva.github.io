@@ -4,6 +4,7 @@ $("#draw2").addClass('active');
 $("#draw3").addClass('active');
 $("#draw4").addClass('active');
 $("#draw5").addClass('active');
+$("#draw6").addClass('active');
 
 $('body').on('click', '.btn-group button', function(e) {
     $(this).addClass('active');
@@ -25,6 +26,8 @@ var canvas4 = document.getElementById("canvas4");
 var context4 = canvas4.getContext("2d");
 var canvas5 = document.getElementById("canvas5");
 var context5 = canvas5.getContext("2d");
+var canvas6 = document.getElementById("canvas6");
+var context6 = canvas5.getContext("2d");
 
 canvasArray.push(canvas0);
 canvasArray.push(canvas1);
@@ -32,12 +35,15 @@ canvasArray.push(canvas2);
 canvasArray.push(canvas3);
 canvasArray.push(canvas4);
 canvasArray.push(canvas5);
+canvasArray.push(canvas6);
 contextArray.push(context0);
 contextArray.push(context1);
 contextArray.push(context2);
 contextArray.push(context3);
 contextArray.push(context4);
 contextArray.push(context5);
+contextArray.push(context6);
+
 //context.globalCompositeOperation = "source-over";
 //context.globalCompositeOperation = "destination-out";
 //context.globalCompositeOperation = "destination-over";

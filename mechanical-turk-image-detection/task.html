@@ -35,7 +35,7 @@
                 How you will get paid
             </h3>
             <p>
-                You will be asked to count people in 6 images. The same images will be given to other turkers. If any of the images have more than 50 people in them, we will grant you a $0.80 bonus. 
+                You will be asked to count people in 7 images. The same images will be given to other turkers. If any of the images have more than 50 people in them, we will grant you a $0.80 bonus. 
                 <br><br><br>
                 Thanks for you help and please remember to accept the HIT first! 
             </p>
@@ -55,10 +55,12 @@
                 Notice that in this case we did not count the dog as a person. 
             </p>
         </div>
+        <br><br>
         </div>
         <hr>
         <form id="mturk_form" name='mturk_form' method="post">
-            <h3>Image 1 of 6</h3>
+            <h2>The Images</h2><br><br>
+            <h3>Image 1 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw0">
@@ -94,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Image 2 of 6</h3>
+            <h3>Image 2 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw1">
@@ -130,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Image 3 of 6</h3>
+            <h3>Image 3 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw2">
@@ -166,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Image 4 of 6</h3>
+            <h3>Image 4 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw3">
@@ -202,7 +204,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Image 5 of 6</h3>
+            <h3>Image 5 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw4">
@@ -238,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Image 6 of 6</h3>
+            <h3>Image 6 of 7</h3>
             <div class="row canvasimage">
                 <div class="btn-group">
                     <button class="btn btn-default" type="button" id="draw5">
@@ -274,6 +276,43 @@
                     </div>
                 </div>
             </div>
+            <h3>Image 6 of 7</h3>
+            <div class="row canvasimage">
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" id="draw6">
+                        Draw
+                    </button>
+                    <button class="btn btn-default" type="button" id="erase">
+                        Erase
+                    </button>
+                </div>
+                <button class="btn btn-default" type="button" onclick="eraseAll(6)">
+                    Clear All
+                </button>
+                <div class="col-md-7">
+                    <canvas width="625" height="330" style='background:url(images/image6.jpg)' id="canvas6" onclick="draw(event, 6)">
+                    </canvas>
+                </div>
+                <div class="col-md-5">
+                    <h2>
+                Counted so far: <span id="counted6"></span>
+            </h2>
+                    <div class="form-group">
+                        <label for="people_sure">
+                            Number of people you are SURE about:
+                        </label>
+                        <input type="text" class="form-control" name="people_sure6">
+                    </div>
+                    <div class="form-group">
+                        <label for="people_unsure">
+                            Number of people you are UNSURE about:
+                            <br>(0 if you are sure of everyone)
+                        </label>
+                        <input type="text" class="form-control" name="people_unsure6">
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="feedbacktextarea">Was anything unclear? Were you unsure what to respond at any point?
                     <br>(Optional question)</label>
