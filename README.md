@@ -1,7 +1,7 @@
 Projects in this repo
 ======
 
-[NYC Public Restrooms Map](http://irealva.github.io/nyc-map-project/dist/)
+[Mechanical Turk Image Detection Task](https://irealva.github.io/mechanical-turk-image-detection/index.html)
 
 [Mobile Notes Web App](http://irealva.github.io/mobile-notes-app/dist/)
 
