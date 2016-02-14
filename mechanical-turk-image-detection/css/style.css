@@ -1,0 +1,27 @@
+body {
+	padding: 50px;
+}
+
+.canvasimage {
+	padding-bottom: 100px;
+}
+
+.buttonrow {
+	text-align: center;
+}
+
+.form-control {
+	width: 50%;
+}
+
+canvas {
+	background-repeat: no-repeat !important;
+}
+
+.feedback {
+	width: 100%;
+}
+
+textarea {
+	width:100% !important;
+}
