@@ -172,8 +172,10 @@ function check_if_won_or_lost() {
     //Winning condition
     if(reward == 2) {
         alert("You won! The HIT will be submitted.") ;
-        $("<input type='hidden' name='elapsedTime' value='" + time + "'>").appendTo($(form_selector));
-        $("<input type='hidden' name='reward' value='" + reward + "'>").appendTo($(form_selector));
+        // $("<input type='hidden' name='elapsedTime' value='" + time + "'>").appendTo($(form_selector));
+        // $("<input type='hidden' name='reward' value='" + reward + "'>").appendTo($(form_selector));
+        $('#elapsedTime').attr("value", time) ;
+        $('#reward').attr("value", reward) ;
         $( form_selector ).submit();
     }
     //Losing condition
@@ -184,8 +186,8 @@ function check_if_won_or_lost() {
         var state = board[(top_row+(rows_to_show))%rows][position] ;
         if(state == 1) {
              alert ("You lost! The HIT will be submitted.") ;
-             $("<input type='hidden' name='elapsedTime' value='" + time + "'>").appendTo($(form_selector));
-            $("<input type='hidden' name='reward' value='" + reward + "'>").appendTo($(form_selector));
+             $('#elapsedTime').attr("value", time) ;
+             $('#reward').attr("value", reward) ;
              $( form_selector ).submit();
         }
 
