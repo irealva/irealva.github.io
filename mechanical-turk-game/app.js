@@ -30,7 +30,9 @@ $(document).ready(function() {
     create_grids();
     create_counter() ;
     create_player();
+})
 
+$("#start").click(function(e){
     $(document).keydown(function(e) {
         if (e.keyCode == 37) { // left arrow clicked
             move_player_left() ;
@@ -40,7 +42,7 @@ $(document).ready(function() {
     });
 
     setInterval(update_grid, speed_of_game) ;
-})
+});
 
 function create_board() {
     gameboard = $("<div id='gameboard'></div>");
@@ -146,7 +148,8 @@ function move_player_right() {
     player.css("left", move+"px") ;
 }
 
-var prev_second = Math.floor((new Date().getTime() / 1000.0)) ;
+var original_second = Math.floor((new Date().getTime() / 1000.0)) ;
+var prev_second = original_second ;
 
 function check_rewards() {
     var milliseconds = new Date().getTime();
@@ -162,9 +165,15 @@ function check_rewards() {
 }
 
 function check_if_won_or_lost() {
+    //Elapsed time
+    var current_second = Math.floor(new Date().getTime() / 1000.0) ;
+    var time = current_second - original_second ;
+
     //Winning condition
     if(reward == 2) {
-        alert("You won!") ;
+        alert("You won! The HIT will be submitted.") ;
+        $("<input type='hidden' name='elapsedTime' value='" + time + "'>").appendTo($(form_selector));
+        $("<input type='hidden' name='reward' value='" + reward + "'>").appendTo($(form_selector));
         $( form_selector ).submit();
     }
     //Losing condition
@@ -174,7 +183,7 @@ function check_if_won_or_lost() {
 
         var state = board[(top_row+(rows_to_show))%rows][position] ;
         if(state == 1) {
-             alert ("You lost") ;
+             alert ("You lost! The HIT will be submitted.") ;
              $( form_selector ).submit();
         }
 
