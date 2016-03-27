@@ -9,7 +9,7 @@ var form_selector = "#mturk_form";
 
 var board = [] ;
 
-var top_row = 4;
+var top_row = 4; //row to start game off
 var ship_location = 0;
 
 var gameboard;
@@ -215,7 +215,7 @@ function check_if_won_or_lost() {
     if (reward == 2) {
         alert("You won! The HIT will be submitted.");
         $('#elapsedTime').attr("value", time);
-        $('#reward').attr("value", reward);
+        $('#reward_money').attr("value", reward);
         $(form_selector).submit();
     }
     //Losing condition
@@ -227,7 +227,7 @@ function check_if_won_or_lost() {
         if (state == 1) {
             alert("You lost! The HIT will be submitted.");
             $('#elapsedTime').attr("value", time);
-            $('#reward').attr("value", reward);
+            $('#reward_money').attr("value", reward);
             $(form_selector).submit();
         }
     }

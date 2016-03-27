@@ -41,7 +41,7 @@ $(document).ready(function () {
     var aid_input = $("<input type='hidden' name='hitId' value='" + hitId + "'>").appendTo($(form_selector));
     var aid_input = $("<input type='hidden' name='workerId' value='" + workerId + "'>").appendTo($(form_selector));
     var aid_input = $("<input type='hidden' id='elapsedTime' name='elapsedTime' value='0'>").appendTo($(form_selector));
-    var aid_input = $("<input type='hidden' id='reward' name='reward' value='0'>").appendTo($(form_selector));
+    var aid_input = $("<input type='hidden' id='reward_money' name='reward' value='0'>").appendTo($(form_selector));
 
     // Make sure the submit form's method is POST
     $(form_selector).attr('method', 'POST');
