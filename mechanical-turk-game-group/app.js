@@ -252,7 +252,7 @@ function startGame() {
 
         success: function(response) {
             game_id = setup_or_create_board(response);
-            console.log("Game ID is " + game_id);
+            //console.log("Game ID is " + game_id);
             update_interval = setInterval(updateBoard, 1000);
         },
         error: function(response) {
@@ -265,13 +265,11 @@ function startGame() {
  * Function to update or create a new board
  */
 function setup_or_create_board(response) {
-    console.log(response);
-
+    //console.log(response);
     var id = 0; //store game id
-
     var exists = false;
     var count = response.count;
-    console.log("count " + count);
+    //console.log("Num players " + count);
     var array = response.results;
 
     for (var i = 0; i < count; i++) {
@@ -321,7 +319,7 @@ function lose_or_win_condition() {
         },
 
         success: function(response) {
-            console.log("Send lose or winning condition");
+            console.log("Sending lose or winning condition");
         },
         error: function(response) {
             console.log(response);
@@ -387,13 +385,11 @@ function process_group_play(response) {
             if (player_status == 'lost') {
                 console.log("Detected other player lost");
                 status = 'lost';
-                console.log(status);
             }
 
             if (player_status == 'won') {
                 console.log("Detected other player won");
                 status = 'won';
-                console.log(status);
             }
             //console.log(json) ;
         }
