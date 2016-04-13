@@ -12,7 +12,6 @@ var board = [];
 
 var top_row;
 var ship_location = 0;
-
 var gameboard;
 var player;
 var collective;
@@ -23,6 +22,7 @@ var original_second;
 var prev_second;
 var update_interval;
 var game_id;
+var game_mode = 'median' ;
 
 //For group play
 var group_key = "ireneAV52pnKP6KbS7"
@@ -229,7 +229,6 @@ function check_if_won_or_lost() {
             $('#reward_money').attr("value", collective_reward);
             $(form_selector).submit();
             lose_or_win_condition();
-
         }
     }
 }
@@ -240,7 +239,7 @@ function check_if_won_or_lost() {
  * Executes just one to see if there is an ongoing game
  */
 function startGame() {
-    var data = { ship_position: 0, status: 'setup', board: 0, game_key: 0, reward: 0 };
+    var data = { ship_position: 0, status: 'setup', board: 0, game_key: 0, reward: 0, mode: game_mode };
     $.ajax({
         url: "https://codingthecrowd.com/counter.php",
 
@@ -252,7 +251,7 @@ function startGame() {
 
         success: function(response) {
             game_id = setup_or_create_board(response);
-            //console.log("Game ID is " + game_id);
+            console.log("Game ID is " + game_id);
             update_interval = setInterval(updateBoard, 1000);
         },
         error: function(response) {
@@ -265,34 +264,39 @@ function startGame() {
  * Function to update or create a new board
  */
 function setup_or_create_board(response) {
-    //console.log(response);
     var id = 0; //store game id
     var exists = false;
     var count = response.count;
-    //console.log("Num players " + count);
     var array = response.results;
 
     for (var i = 0; i < count; i++) {
         var player_state = array[i];
         var json = JSON.parse(player_state.data);
         var player_board = json.board;
+        var player_mode = json.mode ;
 
         //If another player has already setup a board then do not create one
         if (player_board != 0) {
-            console.log("board exists");
+            console.log("Board already exists");
             exists = true;
             board = player_board;
             create_board_divs();
             id = json.game_key;
+            game_mode = player_mode ; // Set game mode to what the other player already setup
         }
     }
 
     //If board does not exists after parsing through all other player states
+    //Create board and also take in a game mode
     if (exists == false) {
         create_board_divs();
         create_board();
         id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
+        var mode = getParameterByName('mediator');
+        if(mode != null) {
+            game_mode = mode ;
+        }
     }
 
     create_grids();
@@ -307,7 +311,7 @@ function setup_or_create_board(response) {
  */
 function lose_or_win_condition() {
     var position = parseInt(player.css("left")) / cell_size;
-    var data = { ship_position: position, status: status, board: board, game_key: game_id, reward: reward };
+    var data = { ship_position: position, status: status, board: board, game_key: game_id, reward: reward, mode: game_mode };
 
     $.ajax({
         url: "https://codingthecrowd.com/counter.php",
@@ -332,7 +336,7 @@ function lose_or_win_condition() {
  */
 function updateBoard() {
     var position = parseInt(player.css("left")) / cell_size;
-    var data = { ship_position: position, status: status, board: board, game_key: game_id, reward: reward };
+    var data = { ship_position: position, status: status, board: board, game_key: game_id, reward: reward, mode: game_mode };
 
     $.ajax({
         url: "https://codingthecrowd.com/counter.php",
@@ -396,8 +400,14 @@ function process_group_play(response) {
     }
 
     counter.text(collective_reward.toFixed(3));
-    //console.log("Median " + median(positions)) ;
-    update_collective(Math.floor(median(positions)));
+    if(game_mode == 'median') {
+        console.log("Playing in median mode") ;
+        update_collective(Math.floor(median(positions)));
+    }
+    if(game_mode == 'better') {
+        console.log("Playing in better/average mode") ;
+        update_collective(Math.floor(better(positions)));
+    }
     update_grid(response.time);
 }
 
@@ -430,4 +440,30 @@ function median(values) {
         return values[half];
     else
         return (values[half - 1] + values[half]) / 2.0;
+}
+
+/* better()
+ * Calculate move based on averaging the positions that all players have voted for
+ */
+function better(values) {
+    var total = 0 ;
+    for(var i = 0; i < values.length; i++) {
+        total += values[i];
+    }
+
+    var average = Math.round(total / values.length) ;
+    return average ;
+}
+
+/* getParameterByName()
+ * get URL parameter
+ */
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
