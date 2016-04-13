@@ -203,7 +203,7 @@ function check_if_won_or_lost() {
     var time = current_second - original_second;
 
     //Winning condition
-    if (collective_reward == 2 || status == 'won') {
+    if (collective_reward > 2 || status == 'won') {
         status = 'won';
         board = 0;
         clearInterval(update_interval);
