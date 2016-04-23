@@ -2,37 +2,85 @@
 <html>
 
 <head>
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
-	<meta charset="utf-8">
-	<title>Zoom Maps</title>
-
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script src="main.js"></script>
-
-	<style>
-		#canvas 
-		{
-			border:1px solid black;
-		}
-
-		#log
-		{
-			height:300px;
-			overflow: auto;
-		}
-	</style>
-
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
+    <title>Zoom Maps</title>
+    <!--- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.0/jquery-migrate.min.js"></script>
+    <script src="main.js"></script>
+    <!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <style>
+    #canvas {
+        border: 1px solid black;
+    }
+    
+    #log {
+        height: 300px;
+        overflow: auto;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 25px;
+    }
+    
+    .instructions {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+    
+    .right-panel {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .street {
+        color: black;
+    }
+    </style>
 </head>
 
-	<body>
-	<!-- Responseive -->
-		<button id="zoomIn">Zoom In</button>
-		<button id="zoomOut">Zoom out</button>
+<body>
+    <h1>This is the title</h1>
+    <button id="zoomIn">Zoom In</button>
+    <button id="zoomOut">Zoom out</button>
+    <div class="row">
+        <div class="col-md-9 left-panel">
+            <canvas id="canvas" width="900" height="600"></canvas>
+        </div>
+        <div class="col-md-3 right-panel">
+            <h2>Tag a Street</h2>
+            <div class="instructions">
+                For any untagged street on the image, click on the name of the street and type the name here as you see it on the image.</div>
+            <br>
+            <!--<form name="data-form" action="counter.php" method="post">-->
+            <button>
+                <b>Street name:</b>
+                <br>
+                <input type="text" class="street" id="streetname" placeholder="e.g. Forbes Ave.">
+                <br>
+                <br>
+                <b>Comments:</b>
+                <br>
+                <textarea id="comments" rows="5" cols="30" placeholder="e.g. Half of the street name was cut off..."></textarea>
+                <input type="submit" id="submitbutton" value="Submit Tag">
+                <br>
+                <br>
+                <input type="submit" value="All streets are tagged.">
+                <br>
+                <br>
+                <input type="submit" value="I want to stop tagging.">
+            </button>
+        </div>
+    </div>
+    <div id="log"></div>
+</body>
 
-		<hr>
-
-		<canvas id="canvas" width="900" height="600" ></canvas>
-		<div id="log"></div>
-	</body>
 </html>

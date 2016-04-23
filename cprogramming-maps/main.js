@@ -7,12 +7,12 @@ $(document).ready(function () {
 
 	var log = document.getElementById('log');
 
+	var orig_canvas_width = canvas.width ;
+	var orig_canvas_height = canvas.height ;
+
 	// get the size of our canvas
 	var canvas_width = canvas.width,
 		canvas_height = canvas.height;
-
-	var canvas_center_x = canvas_width / 2;
-	var canvas_center_y = canvas_height / 2;
 
 	var canvasPos = {"deltaX": 0, "deltaY": 0};
 
@@ -21,7 +21,13 @@ $(document).ready(function () {
 
 	var image_height, image_width;
 
+	ctx.font = "20px Arial";
+	var f1x = 80 ;
+	var f1y = 200 ;
+	var currentTagX ;
+	var currentTagY ;
 
+	var currentScale = 1 ;
 
 	// load our large image
 	var img;
@@ -46,10 +52,12 @@ $(document).ready(function () {
 		image_width = img.width;
 		newImageHeight = image_height / image_width * initialImageWidth;
 
+		ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
 		ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+		ctx.fillText("Hello World",f1x,f1y);
+		ctx.fillRect(f1x,f1y, 6, 6) ;
 	}
 	img.src = "image.jpg";
-
 
 	// our event object that handled clicking (mousedown), mousemove (dragging), mouseup (enddragging)
 	var events = {
@@ -59,13 +67,25 @@ $(document).ready(function () {
 		mouseY: 0,
 		mouseDown: function(e)
 		{	
+			//Redraw canvas!
+			ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
+			ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+			ctx.fillText("Hello World",f1x,f1y);
 
 			// get the current mouse position (DRAGSTART)
 			var r = canvas.getBoundingClientRect();
+			console.log(r.left + " AND " + r.top) ;
 			events.mouseX = (e.clientX - r.left) - canvasPos.deltaX;
 			events.mouseY = (e.clientY - r.top) - canvasPos.deltaY;
 
 			log.innerHTML += 'User clicked at: ' + events.mouseX + ", " + events.mouseY + '! <br/>';
+			var x = events.mouseX * currentScale ;
+			var y = events.mouseY * currentScale ;
+			console.log("Current scale " + currentScale + " \nX: " + x + " AND Y: " + y) ;
+			ctx.fillRect(x, y, 30,30) ;
+			currentTagX = x ;
+			currentTagY = y ;
+
 			log.scrollTop = log.scrollHeight;
 			events.dragging = true;
 
@@ -85,10 +105,12 @@ $(document).ready(function () {
 				canvasPos.deltaY = (y - events.mouseY); // total distance in y
 
 				// we need to clear the canvas, otherwise we'll have a bunch of overlapping images
-				ctx.clearRect(0,0, canvas_width, canvas_height);
-
+				ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
+				
 				// these will be our new x,y position to move the image.
 				ctx.drawImage(img,  canvasPos.deltaX, canvasPos.deltaY, initialImageWidth, newImageHeight);
+				ctx.fillText("Hello World",(f1x+canvasPos.deltaX),(f1y+canvasPos.deltaY));
+				ctx.fillRect((f1x+canvasPos.deltaX),(f1y+canvasPos.deltaY), 6, 6) ;
 
 				log.innerHTML += 'User is dragging to: ' + x + ", " + y + ' <br/>';
 				log.scrollTop = log.scrollHeight;
@@ -105,59 +127,112 @@ $(document).ready(function () {
 	}
 
 	$("#zoomIn").click(function () {
+
+		ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
+		ctx.scale(2,2) ;
+		ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+		ctx.fillText("Hello World",f1x,f1y);
+
+		orig_canvas_width = orig_canvas_width / 2 ; // Inverse of the scale since now canvas occupies less space
+		orig_canvas_height = orig_canvas_height / 2 ;
+
+		currentScale = currentScale / 2;
+		console.log("Current scale: " + currentScale) ;
+
+		// canvasPos.deltaX = 0;
+		// canvasPos.deltaY = 0;
 		
+		/*
 		// for simplicity we use a x2 scaling and calculate new sizes (like above)
 		initialImageWidth = initialImageWidth * 2;
 		newImageHeight = image_height / image_width * initialImageWidth;
 
-		// center of the image currently
-		var image_center_x = initialImageWidth / 2;
-		var image_center_y = newImageHeight / 2;
-
-		// subtract the cavas size by the image center, that's how far we need to move it.
-		var imageXPos = canvas_center_x - image_center_x;
-		var imageYPos = canvas_center_y - image_center_y;
-
-
 		ctx.clearRect(0,0, canvas_width, canvas_height);
-		ctx.drawImage(img, imageXPos, imageYPos, initialImageWidth, newImageHeight);
+		ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+		f1x = f1x * 2 ;
+		f1y = f1y * 2 ;
+		ctx.fillText("Hello World",f1x,f1y);
+		ctx.fillRect(f1x, f1y, 6, 6) ;
 
-		// since we dynamically moved the image to the center of the image, 
-		// we need to set our deltas so panning uses this new point
-		canvasPos.deltaX = imageXPos;
-		canvasPos.deltaY = imageYPos;
-
+		// we need to reset any dragging movements we set
+		canvasPos.deltaX = 0;
+		canvasPos.deltaY = 0;
+		*/
+		
 	});
 
 	$("#zoomOut").click(function () {
+		ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
+		ctx.scale(0.5,0.5) ;
+		ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+		ctx.fillText("Hello World",f1x,f1y);
 
+		orig_canvas_width = orig_canvas_width * 2 ;
+		orig_canvas_height = orig_canvas_height * 2 ;
+
+		currentScale = currentScale * 2 ;
+		console.log("Current scale: " + currentScale) ;
+
+		// canvasPos.deltaX = 0;
+		// canvasPos.deltaY = 0;
+
+		/*
 		// for simplicity we use a x2 scaling and calculate new sizes (like above)
 		initialImageWidth = initialImageWidth / 2;
 		newImageHeight = image_height / image_width * initialImageWidth;
 
-		// center of the image currently
-		var image_center_x = initialImageWidth / 2;
-		var image_center_y = newImageHeight / 2;
+		f1x = f1x / 2 ;
+		f1y = f1y / 2 ;
 
-		// subtract the cavas size by the image center, that's how far we need to move it.
-		var imageXPos = canvas_center_x - image_center_x;
-		var imageYPos = canvas_center_y - image_center_y;
-		
 		ctx.clearRect(0,0, canvas_width, canvas_height);
-		ctx.drawImage(img, imageXPos, imageYPos, initialImageWidth, newImageHeight);
+		ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
+		ctx.fillText("Hello World",f1x,f1y);
+		ctx.fillRect(f1x, f1y, 6, 6) ;
 
-		// since we dynamically moved the image to the center of the image, 
-		// we need to set our deltas so panning uses this new point
-		canvasPos.deltaX = imageXPos;
-		canvasPos.deltaY = imageYPos;
+		// we need to reset any dragging movements we set
+		canvasPos.deltaX = 0;
+		canvasPos.deltaY = 0;
+		*/
+		
+
 	});
 
+	//IN case we use form prevent default behavior which is to submit a window
+	/*
+	$("#submitbutton").submit(function(e) {
+	    e.preventDefault();
+	    console.log(currentTagX) ;
+		console.log(currentTagY) ;
+		var name = $('#comments') ;
+		console.log(name.val()) ;
+		console.log(name.text) ;
+	});
+	*/
+
+	$("#submitbutton").click(function() {
+	    console.log(currentTagX) ;
+		console.log(currentTagY) ;
+		var name = $('#streetname') ;
+		console.log(name.val()) ;
+		ctx.fillText(name.val(),currentTagX,currentTagY);
+	});
+
+	// $('#submitbutton').click(function(){ 
+
+
+	// 	console.log(currentTagX) ;
+	// 	console.log(currentTagY) ;
+
+	// 	var name = $('#streetname') ;
+	// 	console.log(name.value) ;
+
+
+	// });
 
 	canvas.addEventListener('mousedown', events.mouseDown, false);
 	canvas.addEventListener('mousemove', events.mouseMove, false);
 	canvas.addEventListener('mouseup', events.mouseUp, false);
 
 });
-
 
 
