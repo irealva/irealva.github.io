@@ -229,7 +229,8 @@ $(document).ready(function() {
     function drawTags() {
         for (var i = 0; i < tags.length; i++) {
             //Tags were stored in scale 1, so rescale to current scale
-            ctx.fillText(tags[i].name, tags[i].x * currentScale, tags[i].y * currentScale);
+            //ctx.fillText(tags[i].text, (tags[i].x * currentScale)+currentX, (tags[i].y * currentScale)+currentY);
+            ctx.fillText(tags[i].text, (tags[i].x*currentScale)+(currentX*currentScale), (tags[i].y * currentScale)+(currentY*currentScale));
         }
 
     }
@@ -246,10 +247,10 @@ $(document).ready(function() {
         console.log(name);
         var comment = $('#comments').val();
         console.log(comment);
-        ctx.fillText(name, currentTagX, currentTagY);
+        ctx.fillText(name, currentTagX+currentX, currentTagY+currentY);
 
 
-        var newtag = new Tag(name, comment, (currentTagX.toFixed(2) / currentScale).toFixed(2), (currentTagY.toFixed(2) / currentScale).toFixed(2)); // tags saved at scale 1
+        var newtag = new Tag(name, comment, currentTagX / currentScale, currentTagY / currentScale); // tags saved at scale 1
         tags.push(newtag);
         console.log(newtag);
 
