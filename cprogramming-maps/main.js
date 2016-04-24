@@ -28,6 +28,8 @@ $(document).ready(function () {
 	var currentTagY ;
 
 	var currentScale = 1 ;
+	var currentX = 0 ; 
+	var currentY = 0 ;
 
 	// load our large image
 	var img;
@@ -69,18 +71,29 @@ $(document).ready(function () {
 		{	
 			//Redraw canvas!
 			ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
-			ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
-			ctx.fillText("Hello World",f1x,f1y);
+			canvasPos.deltaX = currentX ;
+			canvasPos.deltaY = currentY ;
+			ctx.drawImage(img, canvasPos.deltaX, canvasPos.deltaY, initialImageWidth, newImageHeight);
+			ctx.fillText("Hello World",(f1x+canvasPos.deltaX),(f1y+canvasPos.deltaY));
+			ctx.fillRect((f1x+canvasPos.deltaX),(f1y+canvasPos.deltaY), 6, 6) ;
+
 
 			// get the current mouse position (DRAGSTART)
-			var r = canvas.getBoundingClientRect();
-			console.log(r.left + " AND " + r.top) ;
-			events.mouseX = (e.clientX - r.left) - canvasPos.deltaX;
-			events.mouseY = (e.clientY - r.top) - canvasPos.deltaY;
+			var r = canvas.getBoundingClientRect() ;
+			// console.log("mouse is at left: " + r.left + " and - r.top: " + r.top) ;
+			// console.log("clientX: " + e.clientX + " and - clientY: " + e.clientY) ;
+			// console.log("canvas pos X: " + canvasPos.deltaX + " canvas pos Y: " + canvasPos.deltaY) ;
+			// console.log('\n\n') ;
+			
+			// events.mouseX = ((e.clientX - r.left)) - canvasPos.deltaX;
+			// events.mouseY = ((e.clientY - r.top)) - canvasPos.deltaY;
 
 			log.innerHTML += 'User clicked at: ' + events.mouseX + ", " + events.mouseY + '! <br/>';
-			var x = events.mouseX * currentScale ;
-			var y = events.mouseY * currentScale ;
+
+			var x = (e.clientX - r.left) *currentScale ;
+			var y = (e.clientY - r.top) * currentScale ;
+
+
 			console.log("Current scale " + currentScale + " \nX: " + x + " AND Y: " + y) ;
 			ctx.fillRect(x, y, 30,30) ;
 			currentTagX = x ;
@@ -97,12 +110,15 @@ $(document).ready(function () {
 			{	
 				// get the current mouse position (updates every time the mouse is moved durring dragging)
 				var r = canvas.getBoundingClientRect();
-		        var x = e.clientX - r.left;
-		        var y = e.clientY - r.top;
+		        var x = (e.clientX - r.left) * currentScale;
+		        var y = (e.clientY - r.top) * currentScale;
 
 		        // calculate how far we moved
-		        canvasPos.deltaX = (x - events.mouseX); // total distance in x
-				canvasPos.deltaY = (y - events.mouseY); // total distance in y
+		        canvasPos.deltaX = (x - events.mouseX ) ; // total distance in x
+				canvasPos.deltaY = (y - events.mouseY ) ; // total distance in y
+				currentX = canvasPos.deltaX ;
+				currentY = canvasPos.deltaY ;
+				console.log("CurPosX: " + currentX + " - CurPosY: " + currentY) ;
 
 				// we need to clear the canvas, otherwise we'll have a bunch of overlapping images
 				ctx.clearRect(0,0, orig_canvas_width, orig_canvas_height);
@@ -139,6 +155,9 @@ $(document).ready(function () {
 		currentScale = currentScale / 2;
 		console.log("Current scale: " + currentScale) ;
 
+		currentX = 0 ;
+		currentY = 0 ;
+
 		// canvasPos.deltaX = 0;
 		// canvasPos.deltaY = 0;
 		
@@ -172,6 +191,9 @@ $(document).ready(function () {
 
 		currentScale = currentScale * 2 ;
 		console.log("Current scale: " + currentScale) ;
+
+		currentX = 0 ;
+		currentY = 0 ;
 
 		// canvasPos.deltaX = 0;
 		// canvasPos.deltaY = 0;
