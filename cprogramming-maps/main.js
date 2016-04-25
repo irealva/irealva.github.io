@@ -60,10 +60,8 @@ $(document).ready(function() {
 
         ctx.clearRect(0, 0, orig_canvas_width, orig_canvas_height);
         ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
-        ctx.fillText("Hello World", f1x, f1y);
-        ctx.fillRect(f1x, f1y, boxtagwidth, boxtagwidth);
     }
-    img.src = "image.jpg";
+    img.src = "map.png";
 
     // our event object that handled clicking (mousedown), mousemove (dragging), mouseup (enddragging)
     var events = {
@@ -77,16 +75,14 @@ $(document).ready(function() {
             canvasPos.deltaX = currentX;
             canvasPos.deltaY = currentY;
             ctx.drawImage(img, canvasPos.deltaX, canvasPos.deltaY, initialImageWidth, newImageHeight);
-            ctx.fillText("Hello World", (f1x + canvasPos.deltaX), (f1y + canvasPos.deltaY));
-            ctx.fillRect((f1x + canvasPos.deltaX), (f1y + canvasPos.deltaY), boxtagwidth, boxtagwidth);
-
+            drawTagsMove(canvasPos.deltaX, canvasPos.deltaY) ;
 
             // get the current mouse position (DRAGSTART)
             var r = canvas.getBoundingClientRect();
-            // console.log("mouse is at left: " + r.left + " and - r.top: " + r.top) ;
-            // console.log("clientX: " + e.clientX + " and - clientY: " + e.clientY) ;
-            // console.log("canvas pos X: " + canvasPos.deltaX + " canvas pos Y: " + canvasPos.deltaY) ;
-            // console.log('\n\n') ;
+            console.log("mouse is at left: " + r.left + " and - r.top: " + r.top) ;
+            console.log("clientX: " + e.clientX + " and - clientY: " + e.clientY) ;
+            console.log("canvas pos X: " + canvasPos.deltaX + " canvas pos Y: " + canvasPos.deltaY) ;
+            console.log('\n\n') ;
 
             // events.mouseX = ((e.clientX - r.left)) - canvasPos.deltaX;
             // events.mouseY = ((e.clientY - r.top)) - canvasPos.deltaY;
@@ -128,8 +124,7 @@ $(document).ready(function() {
 
                 // these will be our new x,y position to move the image.
                 ctx.drawImage(img, canvasPos.deltaX, canvasPos.deltaY, initialImageWidth, newImageHeight);
-                ctx.fillText("Hello World", (f1x + canvasPos.deltaX), (f1y + canvasPos.deltaY));
-                ctx.fillRect((f1x + canvasPos.deltaX), (f1y + canvasPos.deltaY), boxtagwidth, boxtagwidth);
+                drawTagsMove(canvasPos.deltaX, canvasPos.deltaY) ;
 
                 log.innerHTML += 'User is dragging to: ' + x + ", " + y + ' <br/>';
                 log.scrollTop = log.scrollHeight;
@@ -150,7 +145,6 @@ $(document).ready(function() {
         ctx.clearRect(0, 0, orig_canvas_width, orig_canvas_height);
         ctx.scale(2, 2);
         ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
-        ctx.fillText("Hello World", f1x, f1y);
 
         drawTags() ;
 
@@ -189,7 +183,6 @@ $(document).ready(function() {
         ctx.clearRect(0, 0, orig_canvas_width, orig_canvas_height);
         ctx.scale(0.5, 0.5);
         ctx.drawImage(img, 0, 0, initialImageWidth, newImageHeight);
-        ctx.fillText("Hello World", f1x, f1y);
 
         drawTags() ;
 
@@ -229,8 +222,18 @@ $(document).ready(function() {
     function drawTags() {
         for (var i = 0; i < tags.length; i++) {
             //Tags were stored in scale 1, so rescale to current scale
-            //ctx.fillText(tags[i].text, (tags[i].x * currentScale)+currentX, (tags[i].y * currentScale)+currentY);
-            ctx.fillText(tags[i].text, (tags[i].x*currentScale)+(currentX*currentScale), (tags[i].y * currentScale)+(currentY*currentScale));
+            //ctx.fillText(tags[i].text, ((tags[i].x*currentScale)tags[i].x * currentScale)+currentX, (tags[i].y * currentScale)+currentY);
+            //ctx.fillText(tags[i].text, +(currentX*currentScale), (tags[i].y * currentScale)+(currentY*currentScale));
+            ctx.fillRect(tags[i].x, tags[i].y,boxtagwidth,boxtagwidth);
+            ctx.fillText(tags[i].text, tags[i].x, tags[i].y);
+        }
+
+    }
+
+    function drawTagsMove(canvasx, canvasy) {
+        for (var i = 0; i < tags.length; i++) {
+            ctx.fillRect(tags[i].x+canvasx, tags[i].y+canvasy,boxtagwidth,boxtagwidth);
+            ctx.fillText(tags[i].text, tags[i].x+canvasx, tags[i].y+canvasy);
         }
 
     }
@@ -248,12 +251,11 @@ $(document).ready(function() {
         var comment = $('#comments').val();
         console.log(comment);
         ctx.fillText(name, currentTagX+currentX, currentTagY+currentY);
+        console.log("PLACING TEXT AT: " + (currentTagX+currentX) + " AND " + (currentTagY+currentY)) ;
 
 
-        var newtag = new Tag(name, comment, currentTagX / currentScale, currentTagY / currentScale); // tags saved at scale 1
+        var newtag = new Tag(name, comment, currentTagX+currentX, currentTagY+currentY); // tags saved at scale 1
         tags.push(newtag);
-        console.log(newtag);
-
     });
 
     //IN case we use form prevent default behavior which is to submit a window
