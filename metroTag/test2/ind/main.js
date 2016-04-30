@@ -83,7 +83,7 @@ function startTag() {
     }
 
     img.src = "map.jpg";
-    update_interval = setInterval(pullData, 1000);
+    update_interval = setInterval(pullData, 30000);
 
     // our event object that handled clicking (mousedown), mousemove (dragging), mouseup (enddragging)
     var events = {
