@@ -53,7 +53,7 @@ function startTag() {
     var textspacewidth = 7;
 
     //For sending to server
-    var group_key = "43.OfDNahmBNV"
+    var group_key = "43OfDNahmBNV"
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
