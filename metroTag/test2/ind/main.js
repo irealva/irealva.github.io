@@ -62,7 +62,7 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "10ahmBNV6" // Key for test2/ind
+    var group_key= "20zlyYXV6" // Key for test2/ind
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -244,7 +244,7 @@ function startTag() {
             sendTagServer(newtag);
         }
 
-        if(reward > 5) {
+        if(reward > 2) {
             alert("You cannot tag more than this amount. Please submit your HIT") ;
         }
  
