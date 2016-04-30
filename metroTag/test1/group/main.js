@@ -1,6 +1,8 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
+var counterserver = 'https://4a9ae452.ngrok.io' ;
+
 //A tag object
 function Tag(text, comment, x, y) {
     this.text = text;
@@ -260,7 +262,7 @@ function startTag() {
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
-            url: "https://0e0c4d01.ngrok.io/counter.php",
+            url: counterserver,
 
             dataType: "jsonp",
             data: {
@@ -343,7 +345,7 @@ function startTag() {
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
-            url: "https://0e0c4d01.ngrok.io/counter.php",
+            url: counterserver,
 
             dataType: "jsonp",
             data: {
