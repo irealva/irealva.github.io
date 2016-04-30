@@ -1,4 +1,5 @@
-var tags = [];
+var tags = []; // to save all the tags on the map
+var mytags = [] ; //To save just tags done by one user
 
 //A tag object
 function Tag(text, comment, x, y) {
@@ -218,9 +219,12 @@ function startTag() {
         //Creating a new tag whose location is based off of the origin of the picture
         var newtag = new Tag(name, comment, currentTagX, currentTagY);
         tags.push(newtag); //Pushing it into our tag array
+        mytags.push(newtag); //Saving to array of tags done just by single user
         // console.log(tags);
 
         $('#tagdata').attr("value", JSON.stringify(tags));
+        $('#mytagdata').attr("value", JSON.stringify(mytags));
+
 
         sendTagServer(newtag);
     });
