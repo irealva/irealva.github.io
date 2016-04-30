@@ -62,7 +62,7 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "10ahmBNV63OfD" // Key for test2/ind
+    var group_key= "10ahmBNV6" // Key for test2/ind
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
