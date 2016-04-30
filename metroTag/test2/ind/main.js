@@ -290,8 +290,8 @@ function startTag() {
             },
 
             success: function(response) {
-                //console.log(response.count);
-                console.log(response);
+                console.log(response.count);
+                //console.log(response);
 
                 process_data_pull(response);
             },
