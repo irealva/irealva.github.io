@@ -1,9 +1,13 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
-var counterserver = 'https://0e17c8c7.ngrok.io/counter.php' ;
+//https://tlk.io/crowd-mapping-step2
+
+var counterserver = 'https://231e851e.ngrok.io/counter.php' ;
 var reward = 0;
 var counter ; 
+var rate = 0.02 ;
+var numtags = 0 ;
 
 //A tag object
 function Tag(text, comment, x, y) {
@@ -62,7 +66,7 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "20zlyYXV6" // Key for test2/ind
+    var group_key= "40zzeYXV6" // Key for test2/ind
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -84,7 +88,7 @@ function startTag() {
 
     img.src = "map.jpg";
     pullData() ;
-    update_interval = setInterval(pullData, 30000);
+    update_interval = setInterval(pullData, 20000);
 
     // our event object that handled clicking (mousedown), mousemove (dragging), mouseup (enddragging)
     var events = {
@@ -222,7 +226,6 @@ function startTag() {
         // console.log(currentTagY);
         var name = $('#streetname').val();
         var comment = $('#comments').val();
-        console.log(name) ;
 
         if(name != '') {
             ctx.fillStyle = "#f5f5f5";
@@ -235,7 +238,7 @@ function startTag() {
             mytags.push(newtag); //Saving to array of tags done just by single user
             // console.log(tags);
 
-            reward = reward + 0.02 ;
+            reward = reward + rate ;
             counter.text(reward.toFixed(2));
 
             $('#tagdata').attr("value", JSON.stringify(tags));
@@ -245,8 +248,11 @@ function startTag() {
             sendTagServer(newtag);
         }
 
-        if(reward > 2) {
-            alert("You cannot tag more than this amount. Please submit your HIT") ;
+        numtags = tags.length ;
+        check_rate() ;
+
+        if(numtags > 200) {
+            alert("Map has sufficient tags. You will not be paid for any more tags. Thank you and please submit the HIT!") ;
         }
  
     });
@@ -302,6 +308,8 @@ function startTag() {
         });
     }
 
+   
+
     //Called every second to call new refresh data from server
     function process_data_pull(response) {
         var count = response.count;
@@ -317,7 +325,38 @@ function startTag() {
                 compare_and_add_tags(data.all_tags);
             }
         }
+
+        numtags = tags.length ;
+        check_rate() ;
+        
     }
+
+     var once = true ;
+     var once2 = true ;
+     var once3 = true ;
+
+    function check_rate() {
+        //console.log("There are " + numtags + " tags") ;
+
+        $('#totaltags-num').text(numtags) ;
+
+
+        if(numtags > 10 && once==true) {
+            rate = rate + 0.01 ;
+            $('#rate-num').text(rate.toFixed(2));
+            once = false ;
+        }
+        if(numtags > 100 && once2==true) {
+            rate = rate + 0.01 ;
+            $('#rate-num').text(rate.toFixed(2));
+            once2 = false ;
+        }
+        if(numtags > 150 && once3==true) {
+            rate = rate + 0.01 ;
+            $('#rate-num').text(rate.toFixed(2));
+            once3 = false ;
+        }
+    } ;
 
     //Compares data stored in server to existing tag
     //Crude comparison for now

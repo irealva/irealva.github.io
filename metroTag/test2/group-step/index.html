@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
+    <title>Metro Tag</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="metroTag">metro<span id="tag-word">Tag</span></div>
+    <div class="intro-instructions">
+            <h2>Help Tag a Street</h2>
+                For any untagged street on the image, click on the name of the street. Type the name as you see it on the image and place any comments if the tagging is unclear.
+                <br><br>
+                You will be paid $0.02 for each correct tag. If as a group, your peer turkers reach 50 tags, then the rate goes up to $0.03. If as a group you reach 100 tags, the rate goes up to $0.04. And 150 tags will get you a rate of $0.05 per tag. The maximum amount of tags allowed is 200.
+                <br><br> 
+                If you believe the map is completely tagged, please scroll below and check the 'map is complete' checkbox and submit the HIT.
+                <br><br>
+                If you wish to do so, you can coordinate a tagging strategy with other workers here: <a href="https://tlk.io/crowd-mapping-step2">https://tlk.io/crowd-mapping-step2</a>
+                <br><br>
+                Please wait a few seconds if the image does not load immediately. 
+        </div>
+    <div id="wrapper">
+        
+        <div id="left-panel">
+            <div id="zoomtext">Zoom:</div>
+            <button id="zoomIn">+</button>
+            <button id="zoomOut">-</button>
+            <canvas id="canvas" width="900" height="550"></canvas>
+        </div>
+        <div id="right-panel">
+            <h4>Total tags<h4>
+            <div class='totaltags'><span id='totaltags-num'>0<span></div>
+            <h4>Rate<h4>
+            <div class='rate'>$ <span id='rate-num'>0.02<span></div>
+            <h4>Bonus Payment<h4>
+            <div class='counter'>$ <span id='reward'>0.00<span></div>
+            <div class="instructions">
+                <h3>Guidelines</h3>
+                Please tag <b>5</b> streets minimum to submit the HIT.<br><br>Write abbreviated versions of street and avenue names ('St' instead of 'Street', 'Av' instead of Avenue, 'Ln' instead of 'Lane')</div>
+            <br>
+            <!--<form name="data-form" action="counter.php" method="post">-->
+            <b><span class="labels">Street name: </span></b>
+            <br>
+            <input type="text" id="streetname" placeholder="e.g. Forbes Av">
+            <br>
+            <br>
+            <b><span class="labels">Comments:<span class="label"></b>
+            <br>
+            <textarea id="comments" rows="6" cols="30" placeholder="e.g. Street name too blurry to read."></textarea>
+            <input type="button" class="right-panel-button" id="submitbutton" value="Submit Tag">
+            <br>
+        </div>
+        <form id="mturk_form" name='mturk_form' method="post">
+            <input type="checkbox" name="map_complete" value="complete"><span id="map_complete">  The map is complete</span><br>
+            <br>
+            <!--<input type="button" class="right-panel-button" id="allStreetsTagged" value="Submit HIT">-->
+            <label for="feedbacktextarea">Was anything unclear? Were you unsure what to respond at any point?
+                    <br>(Optional question)</label>
+                <textarea class="form-control" id="feedback" name="feedback" rows="3"></textarea>
+            <button type="submit" id="submit_hit" class="right-panel-button">
+                    Submit HIT
+            </button>
+            <br>
+        </form>
+    </div>
+    <div id="ThankYouNote"> Thanks for tagging!
+        <br>Have a nice day.
+        <br>
+        <img src="thumbs-up-white.png" width="50" height="50">
+    </div>
+    <div id="intro">
+        <div id="onboard1">
+            <div class="intro-text"><span class="emp">
+            (Please accept the HIT first!)<br><br>
+            MetroTag</span> is a citizen science website trying to help the Carnegie Museum of Pittsburgh <span class="emp"> digitize historical maps.</span> Your work will help historians understand how urban areas have evolved over time.<br><br>
+            You will be <b>collaboratively</b> tagging streets <b>with other turkers</b>. As you submit tags, you might notice more tags updated on the map as other turkers work on the same image.
+                </div>
+            <br>
+            <button type="button" id="startbutton" onclick="onboard()">Let's Get Started!</button>
+        </div>
+        <div id="onboard2">
+            <div class="intro-text">
+                <center>Press Play to view a video demo.</center>
+                <br>
+            </div>
+            <video width="450" height="320" controls>
+                <source src="demo-vid.mp4" type="video/mp4"> Your browser does not support the video tag.
+            </video>
+            <br>
+            <br>
+            <button type="button" id="tagbutton" onclick="startTag()"> Start Tagging!</button>
+        </div>
+        <div id="log"></div>
+</body>
+<!--- Jquery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.0/jquery-migrate.min.js"></script>
+<script src="main.js"></script>
+<script src="mturk.js"></script>
+
+
+</html>
