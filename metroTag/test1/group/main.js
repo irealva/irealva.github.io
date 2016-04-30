@@ -258,8 +258,9 @@ function startTag() {
         var data = { id: my_id, all_tags: tags };
 
         $.ajax({
-            url: "https://codingthecrowd.com/counter.php",
+            //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
+            url: "https://c999b7d4.ngrok.io/counter.php",
 
             dataType: "jsonp",
             data: {
@@ -340,8 +341,9 @@ function startTag() {
         var data = { id: my_id, all_tags: tags, new_tag: newtag };
 
         $.ajax({
-            url: "https://codingthecrowd.com/counter.php",
+            //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
+            url: "https://c999b7d4.ngrok.io/counter.php",
 
             dataType: "jsonp",
             data: {
