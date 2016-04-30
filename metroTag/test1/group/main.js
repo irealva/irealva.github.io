@@ -1,7 +1,7 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
-var counterserver = 'https://4a9ae452.ngrok.io' ;
+var counterserver = 'https://4a9ae452.ngrok.io/counter.php' ;
 
 //A tag object
 function Tag(text, comment, x, y) {
