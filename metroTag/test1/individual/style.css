@@ -13,7 +13,7 @@ body {
 
 #wrapper {
     
-    margin-top: 80px;
+    margin-top: 40px;
     /*position: absolute;*/
     width:100%;
     /*text-align: center;*/
@@ -261,7 +261,7 @@ label {
 }
 
 .form-control {
-    width: 60%;
+    width: 800px;
         margin-left: auto;
     margin-right: auto;
 }
