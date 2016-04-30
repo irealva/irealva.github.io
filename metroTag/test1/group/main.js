@@ -260,7 +260,7 @@ function startTag() {
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
-            url: "https://c999b7d4.ngrok.io/counter.php",
+            url: "https://0e0c4d01.ngrok.io/counter.php",
 
             dataType: "jsonp",
             data: {
@@ -343,7 +343,7 @@ function startTag() {
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
             //url: "http://localhost:8000/counter.php",
-            url: "https://c999b7d4.ngrok.io/counter.php",
+            url: "https://0e0c4d01.ngrok.io/counter.php",
 
             dataType: "jsonp",
             data: {
