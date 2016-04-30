@@ -220,10 +220,12 @@ function startTag() {
         tags.push(newtag); //Pushing it into our tag array
         // console.log(tags);
 
+        $('#tagdata').attr("value", JSON.stringify(tags));
+
         //sendTagServer(newtag);
     });
 
-    $("#allStreetsTagged").click(function() {
+    $("#submit_hit").click(function() {
 
         $("#ThankYouNote").fadeIn("slow");
 
