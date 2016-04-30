@@ -336,7 +336,7 @@ function startTag() {
      var once3 = true ;
 
     function check_rate() {
-        //console.log("There are " + numtags + " tags") ;
+        console.log("There are " + numtags + " tags") ;
 
         $('#totaltags-num').text(numtags) ;
 
