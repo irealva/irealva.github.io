@@ -12,7 +12,14 @@
 
 <body>
     <div id="metroTag">metro<span id="tag-word">Tag</span></div>
+    <div class="intro-instructions">
+            <h2>Help Tag a Street</h2>
+                For any untagged street on the image, click on the name of the street. Type the name as you see it on the image and place any comments if the tagging is unclear.
+                <br><br>
+                Please wait a few seconds for the image to load. 
+        </div>
     <div id="wrapper">
+        
         <div id="left-panel">
             <div id="zoomtext">Zoom:</div>
             <button id="zoomIn">+</button>
@@ -20,22 +27,20 @@
             <canvas id="canvas" width="900" height="550"></canvas>
         </div>
         <div id="right-panel">
-            <h2>Help Tag a Street</h2>
+            
             <div class="instructions">
-                Please wait a little while image loads.<br><br>
-                For any untagged street on the image, click on the name of the street. Type the name as you see it on the image and place any comments if the tagging is unclear.
-                <br>
-                <br>Please tag <b>5</b> streets minimum and submit the HIT.</div>
+                <h3>Guidelines</h3>
+                Please tag <b>5</b> streets minimum and submit the HIT.<br><br>Write abbreviated versions of street and avenue names ('St' instead of 'Street', 'Av' instead of Avenue, 'Ln' instead of 'Lane')</div>
             <br>
             <!--<form name="data-form" action="counter.php" method="post">-->
             <b><span class="labels">Street name: </span></b>
             <br>
-            <input type="text" id="streetname" placeholder="e.g. Forbes Ave.">
+            <input type="text" id="streetname" placeholder="e.g. Forbes Av">
             <br>
             <br>
             <b><span class="labels">Comments:<span class="label"></b>
             <br>
-            <textarea id="comments" rows="6" cols="30" placeholder="e.g. Half of the street name was cut off."></textarea>
+            <textarea id="comments" rows="6" cols="30" placeholder="e.g. Street name too blurry to read."></textarea>
             <input type="button" class="right-panel-button" id="submitbutton" value="Submit Tag">
             <br>
         </div>
