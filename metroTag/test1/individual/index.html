@@ -14,6 +14,7 @@
     <div id="metroTag">metro<span id="tag-word">Tag</span></div>
     <div id="wrapper">
         <div id="left-panel">
+            <div id="zoomtext">Zoom:</div>
             <button id="zoomIn">+</button>
             <button id="zoomOut">-</button>
             <canvas id="canvas" width="900" height="550"></canvas>
@@ -21,9 +22,9 @@
         <div id="right-panel">
             <h2>Help Tag a Street</h2>
             <div class="instructions">
-                For any untagged street on the image, click on the name of the street. Type the name here as you see it on the image.
+                For any untagged street on the image, click on the name of the street. Type the name in 'Street name:' as you see it on the image and place any comments if the tagging is unclear.
                 <br>
-                <br>Please tag 5 streets minimum and submit</div>
+                <br>Please tag 5 streets minimum and submit the HIT.</div>
             <br>
             <!--<form name="data-form" action="counter.php" method="post">-->
             <b><span class="labels">Street name: </span></b>
@@ -40,6 +41,9 @@
         <form id="mturk_form" name='mturk_form' method="post">
             <br>
             <!--<input type="button" class="right-panel-button" id="allStreetsTagged" value="Submit HIT">-->
+            <label for="feedbacktextarea">Was anything unclear? Were you unsure what to respond at any point?
+                    <br>(Optional question)</label>
+                <textarea class="form-control" id="feedback" name="feedback" rows="3"></textarea>
             <button type="submit" id="submit_hit" class="right-panel-button">
                     Submit HIT
             </button>
@@ -53,9 +57,10 @@
     </div>
     <div id="intro">
         <div id="onboard1">
-            <div class="intro-text"><span class="emp">MetroTag</span> is a citizen science website trying to help the Carnegie Museum of Pittsburgh <span class="emp"> digitize historical maps.</span> Your work will help historians understand how urban areas have evolved over time.
-                <br>
-                <br>Please tag 5 streets minimum and submit </div>
+            <div class="intro-text"><span class="emp">
+            (Please accept the HIT first!)<br><br>
+            MetroTag</span> is a citizen science website trying to help the Carnegie Museum of Pittsburgh <span class="emp"> digitize historical maps.</span> Your work will help historians understand how urban areas have evolved over time.
+                </div>
             <br>
             <button type="button" id="startbutton" onclick="onboard()">Let's Get Started!</button>
         </div>
