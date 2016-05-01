@@ -336,7 +336,7 @@ function startTag() {
      var once3 = true ;
 
     function check_rate() {
-        //console.log("There are " + numtags + " tags") ;
+        console.log("There are " + numtags + " tags") ;
 
         $('#totaltags-num').text(numtags) ;
 
@@ -400,6 +400,7 @@ function startTag() {
     //Function to send to server every time a new tag is added
     function sendTagServer(newtag) {
         var data = { id: my_id, all_tags: tags };
+        console.log(JSON.stringify(data)) ;
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
