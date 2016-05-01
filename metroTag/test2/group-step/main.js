@@ -401,7 +401,7 @@ function startTag() {
 
     //Function to send to server every time a new tag is added
     function sendTagServer(newtag) {
-        var data = { id: my_id, all_tags: tags };
+        var data = { id: my_id, all_tags: mytags };
         console.log(JSON.stringify(data)) ;
 
         $.ajax({
