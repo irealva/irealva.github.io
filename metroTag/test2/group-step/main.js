@@ -298,7 +298,7 @@ function startTag() {
 
             success: function(response) {
                 console.log(response.count);
-                //console.log(response);
+                console.log(response);
 
                 process_data_pull(response);
             },
@@ -399,7 +399,7 @@ function startTag() {
 
     //Function to send to server every time a new tag is added
     function sendTagServer(newtag) {
-        var data = { id: my_id, all_tags: tags, new_tag: newtag };
+        var data = { id: my_id, all_tags: tags };
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
