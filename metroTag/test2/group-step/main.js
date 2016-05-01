@@ -68,7 +68,7 @@ function startTag() {
 
     //var group_key= "982ytfYXV6" // Key for test2/grou-step
 
-     var group_key= "103tfYXV6"
+     var group_key= "999tfYXV6"
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
