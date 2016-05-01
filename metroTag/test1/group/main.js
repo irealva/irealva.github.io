@@ -1,7 +1,7 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
-var counterserver = 'https://6fc19798.ngrok.io/counter.php' ;
+var counterserver = 'https://8cae044c.ngrok.io/counter.php' ;
 
 //A tag object
 function Tag(text, comment, x, y) {
@@ -58,7 +58,8 @@ function startTag() {
     //var group_key = "43OfDNahmBNV" - Key for test1/group first group experiment with 20 turkers
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV" fisrt test that was updating every 1000 ms
-    var group_key= "zzzzzzzz89"
+    //var group_key= "zzzzzzzz89"
+    var group_key= "aaaaa3489"
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -261,7 +262,7 @@ function startTag() {
 
     //Pull most recent data from server
     function pullData() {
-        var data = { id: my_id, all_tags: tags };
+        var data = { id: my_id, all_tags: mytags };
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
@@ -344,7 +345,7 @@ function startTag() {
 
     //Function to send to server every time a new tag is added
     function sendTagServer(newtag) {
-        var data = { id: my_id, all_tags: tags, new_tag: newtag };
+        var data = { id: my_id, all_tags: mytags };
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
