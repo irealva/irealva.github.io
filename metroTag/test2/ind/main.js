@@ -63,7 +63,7 @@ function startTag() {
     //var group_key= "63OfDNahmBNV"
 
     //var group_key= "20zlyYXV6" // Key for test2/ind
-    var group_key= "crayYXV6"  //Second test
+    var group_key= "chatasdV6"  //Second test
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
