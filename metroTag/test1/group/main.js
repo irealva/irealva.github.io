@@ -297,9 +297,9 @@ function startTag() {
             var data = JSON.parse(temp.data);
             var id = data.id;
 
-            if (my_id != id) {
+            //if (my_id != id) {
                 compare_and_add_tags(data.all_tags);
-            }
+            //}
         }
     }
 
