@@ -410,7 +410,7 @@ function startTag() {
             dataType: "jsonp",
             data: {
                 key: group_key,
-                data: JSON.stringify(data)
+                data: data
             },
 
             success: function(response) {
