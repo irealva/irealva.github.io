@@ -1,7 +1,7 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
-var counterserver = 'https://0e17c8c7.ngrok.io/counter.php' ;
+var counterserver = 'https://3a4f50b2.ngrok.io/counter.php' ;
 var reward = 0;
 var counter ; 
 
@@ -62,7 +62,8 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "20zlyYXV6" // Key for test2/ind
+    //var group_key= "20zlyYXV6" // Key for test2/ind
+    var group_key= "uyeryYXV6"  //Second test
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -361,7 +362,7 @@ function startTag() {
 
     //Function to send to server every time a new tag is added
     function sendTagServer(newtag) {
-        var data = { id: my_id, all_tags: tags, new_tag: newtag };
+        var data = { id: my_id, all_tags: mytags };
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
