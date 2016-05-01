@@ -57,7 +57,8 @@ function startTag() {
     //For sending to server
     //var group_key = "43OfDNahmBNV" - Key for test1/group first group experiment with 20 turkers
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
-    var group_key= "63OfDNahmBNV"
+    //var group_key= "63OfDNahmBNV" fisrt test that was updating every 1000 ms
+    var group_key= "zzzzzzzz89"
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -78,7 +79,8 @@ function startTag() {
     }
 
     img.src = "map.jpg";
-    update_interval = setInterval(pullData, 1000);
+    pullData() ;
+    update_interval = setInterval(pullData, 20000);
 
     // our event object that handled clicking (mousedown), mousemove (dragging), mouseup (enddragging)
     var events = {
