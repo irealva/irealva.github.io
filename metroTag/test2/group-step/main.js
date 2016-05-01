@@ -66,7 +66,9 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "982ytfYXV6" // Key for test2/grou-step
+    //var group_key= "982ytfYXV6" // Key for test2/grou-step
+
+     var group_key= "103tfYXV6"
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -298,7 +300,7 @@ function startTag() {
 
             success: function(response) {
                 console.log(response.count);
-                console.log(response);
+                //console.log(response);
 
                 process_data_pull(response);
             },
@@ -410,11 +412,11 @@ function startTag() {
             dataType: "jsonp",
             data: {
                 key: group_key,
-                data: data
+                data: JSON.stringify(data)
             },
 
             success: function(response) {
-                console.log(response);
+                //console.log(response);
             },
             error: function(response) {
                 console.log(response);
