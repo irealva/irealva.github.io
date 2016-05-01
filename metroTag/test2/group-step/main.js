@@ -66,7 +66,7 @@ function startTag() {
     //var group_key= "53OfDNahmBNV" Key for test1/group failed experiment with 40 turkers
     //var group_key= "63OfDNahmBNV"
 
-    var group_key= "40zzeYXV6" // Key for test2/ind
+    var group_key= "93asdfYXV6" // Key for test2/grou-step
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -336,7 +336,7 @@ function startTag() {
      var once3 = true ;
 
     function check_rate() {
-        console.log("There are " + numtags + " tags") ;
+        //console.log("There are " + numtags + " tags") ;
 
         $('#totaltags-num').text(numtags) ;
 
@@ -360,7 +360,6 @@ function startTag() {
 
     //Compares data stored in server to existing tag
     //Crude comparison for now
-    //Ugh, this is n^3 --> optimize?
     function compare_and_add_tags(newtags) {
         //console.log(newtags);
         var count = newtags.length;
