@@ -63,7 +63,7 @@ function startTag() {
     //var group_key= "63OfDNahmBNV"
 
     //var group_key= "20zlyYXV6" // Key for test2/ind
-    var group_key= "uyeryYXV6"  //Second test
+    var group_key= "wahtzYXV6"  //Second test
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -278,7 +278,7 @@ function startTag() {
 
     //Pull most recent data from server
     function pullData() {
-        var data = { id: my_id, all_tags: tags };
+        var data = { id: my_id, all_tags: mytags };
 
         $.ajax({
             //url: "https://codingthecrowd.com/counter.php",
@@ -314,9 +314,9 @@ function startTag() {
             var data = JSON.parse(temp.data);
             var id = data.id;
 
-            if (my_id != id) {
+            //if (my_id != id) {
                 compare_and_add_tags(data.all_tags);
-            }
+            //}
         }
     }
 
