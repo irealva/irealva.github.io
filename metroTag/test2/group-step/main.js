@@ -3,7 +3,7 @@ var mytags = [] ; //To save just tags done by one user
 
 //https://tlk.io/crowd-mapping-step2
 
-var counterserver = 'https://231e851e.ngrok.io/counter.php' ;
+var counterserver = 'https://a804c44f.ngrok.io/counter.php' ;
 var reward = 0;
 var counter ; 
 var rate = 0.02 ;
