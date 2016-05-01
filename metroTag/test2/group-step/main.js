@@ -341,7 +341,7 @@ function startTag() {
         $('#totaltags-num').text(numtags) ;
 
 
-        if(numtags > 10 && once==true) {
+        if(numtags > 50 && once==true) {
             rate = rate + 0.01 ;
             $('#rate-num').text(rate.toFixed(2));
             once = false ;
