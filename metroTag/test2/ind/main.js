@@ -1,7 +1,7 @@
 var tags = []; // to save all the tags on the map
 var mytags = [] ; //To save just tags done by one user
 
-var counterserver = 'https://3a4f50b2.ngrok.io/counter.php' ;
+var counterserver = 'https://a1d1e988.ngrok.io/counter.php' ;
 var reward = 0;
 var counter ; 
 
@@ -63,7 +63,7 @@ function startTag() {
     //var group_key= "63OfDNahmBNV"
 
     //var group_key= "20zlyYXV6" // Key for test2/ind
-    var group_key= "wahtzYXV6"  //Second test
+    var group_key= "crayYXV6"  //Second test
     var my_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
     //Load the image
@@ -293,7 +293,7 @@ function startTag() {
 
             success: function(response) {
                 console.log(response.count);
-                //console.log(response);
+                console.log(response);
 
                 process_data_pull(response);
             },
@@ -326,6 +326,7 @@ function startTag() {
     function compare_and_add_tags(newtags) {
         //console.log(newtags);
         var count = newtags.length;
+        console.log("this one has: " + count) ;
 
         for (var i = 0; i < count; i++) {
             var temptag = new Tag(newtags[i].text, newtags[i].comment, newtags[i].x, newtags[i].y);
